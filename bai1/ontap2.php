@@ -28,4 +28,26 @@ function hienthithongtin ($ten,$namsinh,$diachi) {
 //điểm TB < 5 ko đạt
 // hiển thị ra masv-tensv-diemtb-xeploai-diachi-tuoi
 
-hienthithongtin("Thắng",1996,"Số 9 TVB");
+//hienthithongtin("Thắng",1996,"Số 9 TVB");
+function tinhdiemTB($diem1,$diem2) {
+    return ($diem1 + $diem2)/2;
+}
+function xepLoai($diem1,$diem2) {
+    $diemTB = tinhdiemTB($diem1,$diem2);
+    if ($diemTB >=5) {
+        return "Đạt";
+    } else {
+        return "Ko đạt";
+    }
+
+}
+function hienthithongtinsinhvien($masv,$tensv,$namsinh,$diemmon1,$diemmon2,$diachi) {
+    return $masv."-".$tensv."-".tinhTuoi($namsinh).
+        "-".tinhdiemTB($diemmon1,$diemmon2)."-".xepLoai($diemmon1,$diemmon2);
+}
+echo hienthithongtinsinhvien("PH111","Huy",2003,7.5,8.5,"TVB");
+// xây dựng 1 hàm hiển thị thông tin giảng viên (có trả về/K trả về) gồm các tham số truyền vào
+// magv,tengv,namvaotruong,luongcoban,sogioday
+//yêu cầu xây dựng hàm tính thâm niên = năm hiện tại - năm vào trường (Có trả về)
+// xây dựng hàm tổng lương = luongcoban *sogioday;
+//yêu cầu hiển thị ra tổng lương,mãGV ,Tên GV ,thâm niên
