@@ -1,11 +1,16 @@
 <?php
 namespace App\Controllers;
-class ProductController {
+use App\Models\Product;
+
+class ProductController extends BaseController {
+    public $product;
     public function __construct() {
 //        echo "Test autoload";
+        $this->product = new Product();
     }
     public function index() {
-        echo 123;
-        die();
+        $products =$this->product->getProduct();
+        //đổ dữ liệu sang view blade
+        return $this->render('product.index',compact('products'));
     }
 }
