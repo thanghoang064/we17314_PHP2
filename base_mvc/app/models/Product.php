@@ -8,5 +8,10 @@ class Product extends BaseModel {
         $this->setQuery($sql);
         return $this->loadAllRows();
     }
-
+    //xây dựng hàm thêm sản phẩm
+    public function addProduct($id,$ten_sp,$gia) {
+        $sql = "insert into $this->table values (?,?,?)";
+        $this->setQuery($sql);
+        return $this->execute([$id,$ten_sp,$gia]);
+    }
 }

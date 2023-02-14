@@ -1,6 +1,7 @@
 <?php
 //thực hiện tạo các class controller và model tương ứng
 // thực hiện autoload tất cả các file trong thư mục app ra ngoài index
+@session_start();
 require_once "env.php";
 require_once "vendor/autoload.php";
 require_once "common/route.php";
