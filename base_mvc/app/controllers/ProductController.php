@@ -22,7 +22,7 @@ class ProductController extends BaseController {
         if (isset($_POST['add'])) {
             //khởi tạo 1 mảng lỗi = mảng rỗng
             //reset lại toàn bộ phần lỗi  và thành
-            delete_session();
+           // delete_session();
             $error = [];
             //nếu như bỏ trống tên SP
             if (empty($_POST['ten_sp'])) {
@@ -32,15 +32,31 @@ class ProductController extends BaseController {
                 $error[] = "Bạn không được để trống đơn giá";
             }
             if (count($error)>0) {
-                $_SESSION['errors'] = $error;
-                //nhảy veè trang add-product
-                header('location:'.BASE_URL.'add-product');die;
+//                $_SESSION['errors'] = $error;
+//                //nhảy veè trang add-product
+//                header('location:'.BASE_URL.'add-product');die;
+                redirect('errors',$error,'add-product');
             } else {
                 $result = $this->product->addProduct(NULL,$_POST['ten_sp'],$_POST['don_gia']);
                 if ($result) {
-                    $_SESSION['success'] = "Thêm sản phẩm thành công";
-                    header('location:'.BASE_URL.'add-product');die;
+//                    $_SESSION['success'] = "Thêm sản phẩm thành công";
+//                    header('location:'.BASE_URL.'add-product');die;
+                    redirect('success',"Thêm sản phẩm thành công",'add-product');
                 }
+            }
+
+        }
+    }
+    public function editProduct($id) {
+            $product = $this->product->getDetailProduct($id);
+           $this->render('product.edit',compact('product'));
+    }
+    public function editProductPost($id) {
+        if (isset($_POST['edit'])) {
+            $result = $this->product
+                ->updateProduct($id,$_POST['ten_sp'],$_POST['don_gia']);
+            if ($result) {
+                redirect('success','Sửa thành công','test');
             }
 
         }

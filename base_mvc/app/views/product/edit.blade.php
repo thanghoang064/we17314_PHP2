@@ -1,18 +1,18 @@
 @extends('layout.main')
 @section('content')
     @if(isset($_SESSION['errors']) && isset($_GET['msg']))
-    <ul>
+        <ul>
             @foreach($_SESSION['errors'] as $error)
                 <li style="color: red">{{ $error }}</li>
             @endforeach
-    </ul>
+        </ul>
     @endif
     @if(isset($_SESSION['success']) && isset($_GET['msg']))
         <span style="color: green">{{ $_SESSION['success'] }}</span>
     @endif
-<form method="POST" action="{{ route('post-product') }}">
-    Tên sản phẩm <input type="text" name="ten_sp"/></br>
-    Đơn giá <input type="text" name="don_gia"/></br>
-    <input type="submit" name="add">
-</form>
+    <form method="POST" action="{{ route('edit-product-post/'.$product->id) }}">
+        Tên sản phẩm <input type="text" name="ten_sp" value="{{ $product->ten_sp }}"/></br>
+        Đơn giá <input type="text" name="don_gia" value="{{ $product->gia }}"/></br>
+        <input type="submit" name="edit">
+    </form>
 @endsection

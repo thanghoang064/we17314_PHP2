@@ -12,3 +12,18 @@ function delete_session() {
     unset($_SESSION['errors']);
     unset($_SESSION['success']);
 }
+function route($name) {
+    return BASE_URL.$name;
+}
+function redirect($key,$msg,$route) {
+    $_SESSION[$key] = $msg;
+    switch ($key) {
+        case 'success':
+            unset($_SESSION['errors']);
+            break;
+        case 'errors'   :
+            unset($_SESSION['success']);
+            break;
+    }
+    header('location:'.BASE_URL.$route."?msg=".$key);die;
+}

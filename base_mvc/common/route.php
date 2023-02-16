@@ -24,6 +24,10 @@ $router->get('test', [App\Controllers\ProductController::class, 'index']);
 $router->get('add-product',[App\Controllers\ProductController::class,'addProduct']);
 
 $router->post('post-product',[App\Controllers\ProductController::class,'postProduct']);
+
+//tạo route edit-product
+$router->get('edit-product/{id}',[App\Controllers\ProductController::class,'editProduct']);
+$router->post('edit-product-post/{id}',[App\Controllers\ProductController::class,'editProductPost']);
 //tao route có link add-product gọi vào trong phương thức add của product controller
 //khu vực mình quan tâm
 # NB. You can cache the return value from $router->getData() so you don't have to create the routes each request - massive speed gains
